@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PlantsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Plants">
+          <Key>
+            <PropertyRef Name="PlantId" />
+          </Key>
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="PlantName" Type="nchar" MaxLength="10" />
+          <Property Name="plantIrrigationInstructions" Type="nchar" MaxLength="50" />
+          <Property Name="plantPlace" Type="nchar" MaxLength="10" />
+          <Property Name="plantPrice" Type="int" />
+          <Property Name="PlantImgSourceName" Type="nchar" MaxLength="10" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PivateName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="PlantsModelStoreContainer">
+          <EntitySet Name="Plants" EntityType="Self.Plants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PlantsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="PlantId" />
+          </Key>
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="PlantName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="plantIrrigationInstructions" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="plantPlace" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="plantPrice" Type="Int32" />
+          <Property Name="PlantImgSourceName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityContainer Name="PlantsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Plants" EntityType="Self.Plant" />
+          <EntitySet Name="users" EntityType="PlantsModel.user" />
+        </EntityContainer>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PivateName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PlantsModelStoreContainer" CdmEntityContainer="PlantsEntities">
+          <EntitySetMapping Name="Plants">
+            <EntityTypeMapping TypeName="PlantsModel.Plant">
+              <MappingFragment StoreEntitySet="Plants">
+                <ScalarProperty Name="PlantImgSourceName" ColumnName="PlantImgSourceName" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="PlantName" ColumnName="PlantName" />
+                <ScalarProperty Name="plantIrrigationInstructions" ColumnName="plantIrrigationInstructions" />
+                <ScalarProperty Name="plantPlace" ColumnName="plantPlace" />
+                <ScalarProperty Name="plantPrice" ColumnName="plantPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="PlantsModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PivateName" ColumnName="PivateName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
